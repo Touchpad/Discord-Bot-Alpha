@@ -4,11 +4,14 @@
   "description": "",
   "main": "mybot.js",
   "dependencies": {
+    "chalk": "^2.4.1",
     "discord.js": "^11.4.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node mybot.js",
+    "start:dev": "NODE_ENV=development node mybot.js"
   },
   "repository": {
     "type": "git",
