@@ -1,0 +1,24 @@
+{
+  "name": "ih-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mybot.js",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Touchpad/Discord-Bot-Alpha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Touchpad/Discord-Bot-Alpha/issues"
+  },
+  "homepage": "https://github.com/Touchpad/Discord-Bot-Alpha#readme"
+}
