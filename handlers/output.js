@@ -1,8 +1,10 @@
 /**
- * Output handler
+ * This file contains overrides for console-output
+ * this is done to add a bit of styling and a timestamp to the output.
  *
- * This file contains overrides for console-output to add a bit of styling including timestamp to the output
- * To use this file just require it in the root file of your project
+ * To use this file add `require('<path>/output')` in the root file of your project
+ *
+ * @requires chalk, ./error
  */
 
 const chalk = require('chalk');
@@ -36,7 +38,7 @@ const timestamp = () => {
  * Override for console.log
  * adds timestamp to output
  *
- * @param message
+ * @inheritDoc
  */
 console.log = (...message) => {
   _log.apply(console, [timestamp(), chalk.blue.bold(' ->'.padStart(8, ' ')), ...message]);
@@ -46,7 +48,7 @@ console.log = (...message) => {
  * Override for console.info
  * adds timestamp and " Info  ->" in magenta to output
  *
- * @param message
+ * @inheritDoc
  */
 console.info = (...message) => {
   _log.apply(console, [timestamp(), chalk.magenta('Info  ->'), ...message]);
@@ -56,7 +58,7 @@ console.info = (...message) => {
  * Override for console.warn
  * adds timestamp and " Warn  ->" in yellow to output
  *
- * @param message
+ * @inheritDoc
  */
 console.warn = (...message) => {
   _log.apply(console, [timestamp(), chalk.yellow('Warn  ->'), ...message]);
@@ -66,7 +68,7 @@ console.warn = (...message) => {
  * Override for console.error
  * adds timestamp and " Error ->" in red to output
  *
- * @param msg mixed
+ * @inheritDoc
  */
 console.error = (...msg) => {
   const { NODE_ENV } = process.env;

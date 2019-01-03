@@ -1,8 +1,23 @@
+/**
+ * @description This file contains some basic error handling
+ * customize console-output for uncaught exceptions
+ * also contains function to write to local-logfile
+ *
+ * To use this file add `require('<path>/error')` in the root file of your project
+ *
+ * @requires chalk
+ */
+
 const chalk = require('chalk');
 const fs = require('fs');
 
 const errorLog = fs.createWriteStream(`${__dirname}/../logs/bot-error.log`, { flags: 'a' });
 
+/**
+ * Enum for error codes to add a little bit more descriptive console-output
+ *
+ * @enum string
+ */
 const ERROR_CODES = Object.freeze({
   EACCES: `${chalk.bold('EACCES')} (${chalk.italic('Permission denied')}`,
   EADDRINUSE: `${chalk.bold('EADDRINUSE')} (${chalk.italic('Address already in use')})`,
@@ -17,18 +32,34 @@ const ERROR_CODES = Object.freeze({
   EPERM: `${chalk.bold('EPERM')} (${chalk.italic('Operation not permitted')})`,
   EPIPE: `${chalk.bold('EPIPE')} (${chalk.italic('Broken pipe')})`,
   ETIMEDOUT: `${chalk.bold('ETIMEDOUT')} (${chalk.italic('Operation timed out')})`,
-  '': '',
 });
 
+/**
+ * Writes to error-log-file
+ *
+ * @param logMessage string
+ */
+const logError = (logMessage) => {
+  errorLog.write(logMessage);
+  errorLog.write('\n');
+};
+
+/**
+ * Customize console output for uncaught exceptions
+ * and send it as object to console.error-override
+ *
+ * @override
+ */
 process.on('uncaughtException', (error) => {
-  const { NODE_ENV } = process.env;
   const { stack } = error;
   const pattern = new RegExp(/^Error: (EACCES|EADDRINUSE|ECONNREFUSED|ECONNRESET|EEXIST|EISDIR|EMFILE|ENOENT|ENOTDIR|ENOTEMPTY|EPERM|EPIPE|ETIMEDOUT|)/);
 
-  console.error(stack
-    .replace(pattern, (_, match) => ERROR_CODES[match]));
-  if (NODE_ENV === 'production') {
-    errorLog.write(stack);
-    errorLog.write('\n');
-  }
+  console.error({
+    stack: [stack],
+    message: [stack.replace(pattern, (_, match) => (match !== '') ? ERROR_CODES[match] : '')],
+  });
 });
+
+module.exports = {
+  logError,
+};
