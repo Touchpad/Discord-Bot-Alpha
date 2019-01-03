@@ -1,11 +1,13 @@
 /**
- * @description This file contains some basic error handling
+ * This file contains some basic error handling
  * customize console-output for uncaught exceptions
  * also contains function to write to local-logfile
  *
  * To use this file add `require('<path>/error')` in the root file of your project
  *
  * @requires chalk
+ *
+ * @todo Add support for additional exceptions
  */
 
 const chalk = require('chalk');
