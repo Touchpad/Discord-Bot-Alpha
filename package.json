@@ -1,0 +1,27 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mybot.js",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "discord.js": "^11.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node mybot.js",
+    "start:dev": "NODE_ENV=development node mybot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beanmenn/Discord-Bot-Alpha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beanmenn/Discord-Bot-Alpha/issues"
+  },
+  "homepage": "https://github.com/beanmenn/Discord-Bot-Alpha#readme"
+}
