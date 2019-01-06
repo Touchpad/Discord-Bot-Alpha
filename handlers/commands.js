@@ -7,14 +7,14 @@ const { prefix } = require('../config.json');
  *
  * @typedef CommandSchema
  * @type {object}
- * @property {string} title               Full name of command, used by the help command
- * @property {string} name                Command name, used after prefix to call command
- * @property {string} description         Longer description of the command, used by the help command
- * @property {string|number} accessLevel  Set if command should have limited access
- * @property {number} [cd]                duration between command can be rerun
- * @property {boolean} [args]             Determines if command requires args
- * @property {string} [usage]             Contains example arguments if command takes arguments
- * @property {function} execute           What should happen if command ir run
+ * @property {string} title                 Full name of command, used by the help command
+ * @property {string} name                  Command name, used after prefix to call command
+ * @property {string} description           Longer description of the command, used by the help command
+ * @property {string|number} [accessLevel]  Set if command should have limited access
+ * @property {number} [cd]                  Duration between command can be rerun
+ * @property {boolean} [args]               Determines if command requires args
+ * @property {string} [usage]               Contains example arguments if command takes arguments
+ * @property {function} execute             What should happen if command ir run
  */
 
 class Commands {
@@ -74,10 +74,10 @@ class Commands {
       const reply = [`This command requires arguments`];
 
       if (command.usage) {
-        reply.push(`The correct way to use this command is: \`${prefix}${command.name} ${command.usage}\``);
+        reply.push(`the correct way to use this command is: \`${prefix}${command.name} ${command.usage}\``);
       }
 
-      return message.channel.send(reply.join('\n'));
+      return message.channel.send(reply.join(', '));
     }
 
     /**
