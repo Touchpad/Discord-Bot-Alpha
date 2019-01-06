@@ -54,11 +54,15 @@ const logError = (logMessage) => {
  */
 process.on('uncaughtException', (error) => {
   const { stack } = error;
-  const pattern = new RegExp(/^Error: (EACCES|EADDRINUSE|ECONNREFUSED|ECONNRESET|EEXIST|EISDIR|EMFILE|ENOENT|ENOTDIR|ENOTEMPTY|EPERM|EPIPE|ETIMEDOUT|)/);
+  const pattern = new RegExp(/(EACCES|EADDRINUSE|ECONNREFUSED|ECONNRESET|EEXIST|EISDIR|EMFILE|ENOENT|ENOTDIR|ENOTEMPTY|EPERM|EPIPE|ETIMEDOUT|)/);
 
   console.error({
     stack: [stack],
-    message: [stack.replace(pattern, (_, match) => (match !== '') ? ERROR_CODES[match] : '')],
+    message: [
+      stack
+        .replace(/^Error(:?) /, '')
+        .replace(pattern, (_, match) => (match !== '') ? ERROR_CODES[match] : ''),
+    ],
   });
 });
 
