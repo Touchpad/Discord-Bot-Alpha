@@ -116,7 +116,7 @@ module.exports = {
 
     return taggedMember.ban()
       .then(() => {
-        return message.channel.send(response.join(' '));
+        return message.channel.send(`\`${taggedUser.username}\` has been banned`);
       })
       .catch(console.error);
   },
